@@ -100,4 +100,28 @@ const selectAnswer = (e) =>{
     nextBtn.style.display = "block"
 }
 
+const showScore = () => {
+  resetState();
+  questionElements.innerHTML = `You scored ${score} out of ${questions.length}!`
+  nextBtn.innerHTML = "Play Again";
+  nextBtn.style.display = "block";
+}
+
+const handleNextBtn = () => {
+  currentQuestionElement++;
+  if(currentQuestionElement < questions.length){
+    showQuestion();
+  }else{
+    showScore();
+  }
+}
+ 
+nextBtn.addEventListener("click", ()=>{
+  if(currentQuestionElement < questions.length){
+    handleNextBtn();
+  }else{
+    startQuiz();
+  }
+})
+
 startQuiz();
